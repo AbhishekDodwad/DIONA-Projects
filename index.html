@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical & Travel Expense Request</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Enter Your Expense Details</h1>
+        
+        <form id="expenseForm">
+            <div class="form-section">
+                <h2>Personal Information</h2>
+                <div class="form-group">
+                    <label for="claimantName">Full Name:</label>
+                    <input type="text" id="claimantName" required>
+                </div>
+                <div class="form-group">
+                    <label for="claimNumber">Claim Number:</label>
+                    <input type="text" id="claimNumber" required>
+                </div>
+            </div>
+
+            <!-- Prescription Drugs Section -->
+            <div class="form-section">
+                <h2>Prescription Drugs</h2>
+                <div id="prescriptionDrugsContainer">
+                    <div class="expense-entry">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Drug Name:</label>
+                                <input type="text" class="drug-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Prescription Date:</label>
+                                <input type="date" class="prescription-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Date Purchased:</label>
+                                <input type="date" class="purchase-date" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Healthcare Provider:</label>
+                                <input type="text" class="provider-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Amount Paid ($):</label>
+                                <input type="number" step="0.01" class="amount-paid" required>
+                            </div>
+                            <button type="button" class="remove-btn" onclick="removeEntry(this)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" onclick="addPrescriptionDrug()">Add Another Prescription Drug</button>
+            </div>
+
+            <!-- Over-the-Counter Drugs Section -->
+            <div class="form-section">
+                <h2>Over-the-Counter Drugs</h2>
+                <div id="otcDrugsContainer">
+                    <div class="expense-entry">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Drug Name:</label>
+                                <input type="text" class="otc-drug-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Date Purchased:</label>
+                                <input type="date" class="otc-purchase-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Amount Paid ($):</label>
+                                <input type="number" step="0.01" class="otc-amount-paid" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Seller's Name:</label>
+                                <input type="text" class="otc-seller-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Reason for Purchasing:</label>
+                                <input type="text" class="otc-reason" required>
+                            </div>
+                            <button type="button" class="remove-btn" onclick="removeEntry(this)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" onclick="addOTCDrug()">Add Another OTC Drug</button>
+            </div>
+
+            <!-- Medical Supplies Section -->
+            <div class="form-section">
+                <h2>Bandages, Braces or Other Medical Supplies</h2>
+                <div id="medicalSuppliesContainer">
+                    <div class="expense-entry">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Item Purchased:</label>
+                                <input type="text" class="supply-item" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Date Purchased:</label>
+                                <input type="date" class="supply-purchase-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Was this Prescribed?</label>
+                                <select class="supply-prescribed" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Healthcare Provider:</label>
+                                <input type="text" class="supply-provider" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Amount Paid ($):</label>
+                                <input type="number" step="0.01" class="supply-amount" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Seller's Name:</label>
+                                <input type="text" class="supply-seller" required>
+                            </div>
+                            <button type="button" class="remove-btn" onclick="removeEntry(this)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" onclick="addMedicalSupply()">Add Another Medical Supply</button>
+            </div>
+
+            <!-- Parking Section -->
+            <div class="form-section">
+                <h2>Parking for Medical Appointments</h2>
+                <div id="parkingContainer">
+                    <div class="expense-entry">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Healthcare Facility Address:</label>
+                                <input type="text" class="parking-facility" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Date:</label>
+                                <input type="date" class="parking-date" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Amount Paid ($):</label>
+                                <input type="number" step="0.01" class="parking-amount" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Meter Used?</label>
+                                <select class="parking-meter-used" required>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Meter Number:</label>
+                                <input type="text" class="parking-meter-number">
+                            </div>
+                            <button type="button" class="remove-btn" onclick="removeEntry(this)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" onclick="addParking()">Add Another Parking Expense</button>
+            </div>
+
+            <!-- Travel Section -->
+            <div class="form-section">
+                <h2>Travel to Medical Appointments</h2>
+                <p class="info-note">The WCB will generally reimburse only those transportation costs which are in excess of costs that would be incurred by the worker while travelling to and from work.</p>
+                <div id="travelContainer">
+                    <div class="expense-entry">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Appointment Date:</label>
+                                <input type="date" class="travel-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Healthcare Facility Address:</label>
+                                <input type="text" class="travel-facility" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Workplace Address:</label>
+                                <input type="text" class="travel-workplace" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Distance (Round Trip in km):</label>
+                                <input type="number" step="0.1" class="travel-distance" required>
+                            </div>
+                            <button type="button" class="remove-btn" onclick="removeEntry(this)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" onclick="addTravel()">Add Another Travel Expense</button>
+            </div>
+
+            <!-- Transportation Section -->
+            <div class="form-section">
+                <h2>Bus or Taxi Fare for Medical Appointments</h2>
+                <p class="info-note">*Note: Pre-approval is required from your WCB representative to claim taxi fare(s).</p>
+                <div id="transportationContainer">
+                    <div class="expense-entry">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Appointment Date:</label>
+                                <input type="date" class="transport-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Starting Address:</label>
+                                <input type="text" class="transport-start">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Healthcare Facility Address:</label>
+                                <input type="text" class="transport-facility" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Transport Type:</label>
+                                <select class="transport-type" required>
+                                    <option value="Bus">Bus</option>
+                                    <option value="Taxi">Taxi</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Total Fare Paid ($):</label>
+                                <input type="number" step="0.01" class="transport-fare" required>
+                            </div>
+                            <button type="button" class="remove-btn" onclick="removeEntry(this)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" onclick="addTransportation()">Add Another Transportation Expense</button>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" onclick="generateReport()">Generate Report</button>
+                <button type="reset">Reset Form</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Report Display Area (initially hidden) -->
+    <div id="reportContainer" class="report-container" style="display: none;">
+        <div class="report-actions">
+            <button onclick="window.print()">Print Report</button>
+            <button onclick="closeReport()">Close Report</button>
+        </div>
+        <div id="reportContent" class="report-content">
+            <!-- Report content will be generated here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
